@@ -10,6 +10,7 @@ import Header from "./components/Header.vue";
     </a>
   </div>
   <TypeNav msg="Vite + Vue" />
+  <div>123</div>
   <Header></Header>
 </template>
 
