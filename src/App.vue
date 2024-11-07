@@ -1,6 +1,7 @@
 <script setup>
 import TypeNav from "./components/TypeNav.vue";
 import Header from "./components/Header.vue";
+console.log(123);
 </script>
 
 <template>
