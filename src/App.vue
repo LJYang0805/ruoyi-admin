@@ -4,13 +4,7 @@ import Header from "./components/Header.vue";
 </script>
 
 <template>
-  <div>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <TypeNav />
-  <Header></Header>
+  <el-config-provider> <TypeNav /> <Header></Header> </el-config-provider>
 </template>
 
 <style scoped>
