@@ -9,7 +9,7 @@ import Header from "./components/Header.vue";
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <TypeNav msg="Vite + Vue" />
+  <TypeNav />
   <Header></Header>
 </template>
 
