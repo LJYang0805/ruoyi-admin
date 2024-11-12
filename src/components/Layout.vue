@@ -1,9 +1,10 @@
 <script setup>
-import Layout from "./components/Layout.vue";
+import TypeNav from "./TypeNav.vue";
+import Header from "./Header.vue";
 </script>
 
 <template>
-  <Layout></Layout>
+  <el-config-provider> <TypeNav /> <Header></Header> </el-config-provider>
 </template>
 
 <style scoped>

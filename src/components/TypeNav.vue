@@ -1,102 +1,101 @@
 <script setup>
-import { ref, reactive } from "vue";
+import { ref } from "vue";
 
-let count = reactive({
-  a: false,
-  b: false,
-  c: false,
-});
-const toggleArraw = (section) => {
-  count.a = section === "a" ? !count.a : false;
-  count.b = section === "b" ? !count.b : false;
-  count.c = section === "c" ? !count.c : false;
+let count = ref(null);
+const toggleArraw = (index) => {
+  count.value = count.value === index ? null : index; //切换展开状态
 };
 
-let menu1 = reactive([
-  { content: "用户管理", icon: `&#xe636;`, isArraw: false },
-  { content: "角色管理", icon: "&#xe621;", isArraw: false },
-  { content: "菜单管理", icon: "&#xe605;", isArraw: false },
-  { content: "部门管理", icon: "&#xe608;", isArraw: false },
-  { content: "岗位管理", icon: "&#xe87a;", isArraw: false },
-  { content: "字典管理", icon: "&#xe756;", isArraw: false },
-  { content: "参数设置", icon: "&#xe61c;", isArraw: false },
-  { content: "通知公告", icon: "&#xe635;", isArraw: false },
-  { content: "日志管理", icon: "&#xe687;", isArraw: true },
-]);
-let menu2 = reactive([
-  { content: "在线用户", icon: "&#xe87a;" },
-  { content: "定时任务", icon: "&#xe87a;" },
-  { content: "数据监控", icon: "&#xe860;" },
-  { content: "服务监控", icon: "&#xe860;" },
-  { content: "缓存监控", icon: "&#xe860;" },
-  { content: "缓存列表", icon: "&#xe860;" },
-]);
-let menu3 = reactive([
-  { content: "表单构建", icon: `&#xe860;` },
-  { content: "代码生成", icon: "&#xe860;" },
-  { content: "系统接口", icon: "&#xe860;" },
-]);
+let menu = [
+  {
+    title: "系统管理",
+    icon: "icon-system",
+    children: [
+      { content: "用户管理", icon: `icon-user`, isArraw: false },
+      { content: "角色管理", icon: "icon-peoples", isArraw: false },
+      { content: "菜单管理", icon: "icon-tree-table", isArraw: false },
+      { content: "部门管理", icon: "icon-tree", isArraw: false },
+      { content: "岗位管理", icon: "icon-Books_notebook", isArraw: false },
+      { content: "字典管理", icon: "icon-zhuanye", isArraw: false },
+      { content: "参数设置", icon: "icon-edit1", isArraw: false },
+      { content: "通知公告", icon: "icon-chat", isArraw: false },
+      { content: "日志管理", icon: "icon-edit2", isArraw: true },
+    ],
+  },
+  {
+    title: "系统监控",
+    icon: "icon-monitor",
+    children: [
+      { content: "在线用户", icon: "icon-a-Devicebase-station-line" },
+      { content: "定时任务", icon: "icon-dict" },
+      { content: "数据监控", icon: "icon-Druid" },
+      { content: "服务监控", icon: "icon-monitor" },
+      { content: "缓存监控", icon: "icon-Redis" },
+      { content: "缓存列表", icon: "icon-redis-list" },
+    ],
+  },
+  {
+    title: "系统工具",
+    icon: "icon-c-tool-box",
+    children: [
+      { content: "表单构建", icon: `icon-buildings_half-build` },
+      { content: "代码生成", icon: "icon-code" },
+      { content: "系统接口", icon: "icon-swagger" },
+    ],
+  },
+];
 </script>
 
 <template>
-  <teleport to="body">
-    <div class="typeNav">
-      <div class="title">
-        <img src="../assets/images/logo.png" alt="" /><span>若依管理系统</span>
-      </div>
+  <div class="typeNav">
+    <div class="title">
+      <img src="../assets/images/logo.png" alt="" /><span>若依管理系统</span>
+    </div>
 
-      <!-- 系统管理 navigation -->
-      <div class="navigation">
-        <i class="iconfont">&#xe849;</i><span>首页</span>
-      </div>
+    <!-- 系统管理 navigation -->
+    <div class="navigation">
+      <i class="iconfont icon-dashboard-fill"></i><span>首页</span>
+    </div>
 
-      <!-- 系统管理 navigation -->
-      <div class="navigation" id="extend" @click="toggleArraw('a')">
-        <i class="iconfont">&#xe61e;</i><span>系统管理</span>
-        <i :class="['arraw', 'iconfont', { selected: count.a }]">&#xe60c;</i>
+    <!-- 系统管理 系统监控 系统工具 navigation -->
+    <div v-for="(item, index) in menu" :key="index">
+      <div class="navigation" id="extend" @click="toggleArraw(index)">
+        <i :class="['iconfont', item.icon]"></i><span>{{ item.title }}</span>
+        <i
+          :class="[
+            'arraw',
+            'iconfont',
+            'icon-i_arraw_down',
+            { selected: count === index ? true : false },
+          ]"
+        ></i>
       </div>
-      <ul class="menu" :style="{ height: count.a ? auto : '0px' }">
-        <li v-for="(item, index) in menu1" :key="index" class="item">
-          <i class="iconfont" v-html="item.icon"></i
+      <ul
+        class="menu"
+        :style="{ maxHeight: count === index ? '500px' : '0px' }"
+      >
+        <li v-for="(item, index) in item.children" :key="index" class="item">
+          <i :class="['iconfont', item.icon]"></i
           ><span>{{ item.content }}</span>
           <i
             v-if="item.isArraw"
-            :class="['arraw', 'iconfont', { selected: count.a }]"
-            >&#xe60c;</i
-          >
+            :class="[
+              'arraw',
+              'iconfont',
+              'icon-i_arraw_down',
+              { selected: count == index ? true : false },
+              ,
+            ]"
+          ></i>
         </li>
       </ul>
-
-      <!-- 系统监控 navigation -->
-      <div class="navigation" id="extend" @click="toggleArraw('b')">
-        <i class="iconfont">&#xe860;</i><span>系统监控</span>
-        <i :class="['arraw', 'iconfont', { selected: count.b }]">&#xe60c;</i>
-      </div>
-      <ul class="menu" :style="{ height: count.b ? auto : '0px' }">
-        <li v-for="(item, index) in menu2" :key="index" class="item">
-          <i class="iconfont" v-html="item.icon"></i
-          ><span>{{ item.content }}</span>
-        </li>
-      </ul>
-
-      <!-- 系统工具 navigation -->
-      <div class="navigation" id="extend" @click="toggleArraw('c')">
-        <i class="iconfont">&#xe774;</i><span>系统工具</span>
-        <i :class="['arraw', 'iconfont', { selected: count.c }]">&#xe60c;</i>
-      </div>
-      <ul class="menu" :style="{ height: count.c ? auto : '0px' }">
-        <li v-for="(item, index) in menu3" :key="index" class="item">
-          <i class="iconfont" v-html="item.icon"></i
-          ><span>{{ item.content }}</span>
-        </li>
-      </ul>
-
-      <!-- 若依官网 navigation -->
-      <div class="navigation">
-        <i class="iconfont">&#xe653;</i><span>若依官网</span>
-      </div>
     </div>
-  </teleport>
+
+    <!-- 若依官网 navigation -->
+    <div class="navigation">
+      <i class="iconfont">&#xe653;</i><span>若依官网</span>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -105,6 +104,7 @@ let menu3 = reactive([
   display: flex;
   flex-direction: column;
   left: 0;
+  top: 0;
   width: 200px;
   height: 100%;
   background-color: rgb(48, 65, 86);
@@ -131,7 +131,7 @@ let menu3 = reactive([
 
 .title span {
   position: relative;
-  left: 80px;
+  left: 22px;
 }
 
 .navigation {
@@ -145,6 +145,7 @@ let menu3 = reactive([
   box-sizing: border-box;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
     Microsoft YaHei, Arial, sans-serif;
+  text-align: left;
   vertical-align: middle;
 }
 .navigation:hover {
