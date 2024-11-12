@@ -1,26 +1,27 @@
 <script setup>
-import TypeNav from "./TypeNav.vue";
 import TypeNav1 from "./TypeNav1.vue";
 import Header from "./Header.vue";
 </script>
 
 <template>
   <el-config-provider>
-    <TypeNav /> <TypeNav1 /> <Header></Header>
+    <el-container>
+      <el-aside width="200px">
+        <TypeNav1 />
+      </el-aside>
+      <el-container>
+        <el-header>
+          <Header />
+        </el-header>
+        <el-main> main </el-main>
+      </el-container>
+    </el-container>
   </el-config-provider>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+* {
+  margin: 0;
+  padding: 0;
 }
 </style>
