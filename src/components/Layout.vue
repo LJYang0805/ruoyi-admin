@@ -1,10 +1,13 @@
 <script setup>
 import TypeNav from "./TypeNav.vue";
+import TypeNav1 from "./TypeNav1.vue";
 import Header from "./Header.vue";
 </script>
 
 <template>
-  <el-config-provider> <TypeNav /> <Header></Header> </el-config-provider>
+  <el-config-provider>
+    <TypeNav /> <TypeNav1 /> <Header></Header>
+  </el-config-provider>
 </template>
 
 <style scoped>

@@ -1,9 +1,21 @@
 <script setup>
 import { ref } from "vue";
+import {
+  Document,
+  Menu as IconMenu,
+  Location,
+  Setting,
+} from "@element-plus/icons-vue";
 
-let count = ref(null);
-const toggleArraw = (index) => {
-  count.value = count.value === index ? null : index; //切换展开状态
+// const handleOpen = (key: string, keyPath: string[]) => {
+//   console.log(key, keyPath)
+// }
+const handleOpen = (key, keyPath) => {
+  console.log(key, keyPath);
+};
+
+const handleClose = (key, keyPath) => {
+  console.log(key, keyPath);
 };
 
 let menu = [
@@ -47,69 +59,117 @@ let menu = [
 </script>
 
 <template>
-  <div class="typeNav">
+  <el-row class="typeNav">
     <div class="title">
       <img src="../assets/images/logo.png" alt="" /><span>若依管理系统</span>
     </div>
+    <el-menu
+      unique-opened
+      active-text-color="#ffd04b"
+      background-color="#545c64"
+      class="el-menu-vertical-demo"
+      default-active="2"
+      text-color="#fff"
+      @open="handleOpen"
+      @close="handleClose"
+    >
+      <!-- 首页 navigation -->
+      <el-menu-item class="navigation" index="1">
+        <i class="iconfont icon-dashboard-fill"></i><span>首页</span>
+      </el-menu-item>
 
-    <!-- 首页 navigation -->
-    <div class="navigation">
-      <i class="iconfont icon-dashboard-fill"></i><span>首页</span>
-    </div>
-
-    <!-- 系统管理 系统监控 系统工具 navigation -->
-    <div v-for="(item, index) in menu" :key="index">
-      <div class="navigation" id="extend" @click="toggleArraw(index)">
-        <i :class="['iconfont', item.icon]"></i><span>{{ item.title }}</span>
-        <i
-          :class="[
-            'arraw',
-            'iconfont',
-            'icon-i_arraw_down',
-            { selected: count === index ? true : false },
-          ]"
-        ></i>
-      </div>
-      <ul
-        class="menu"
-        :style="{ maxHeight: count === index ? '500px' : '0px' }"
+      <!-- 系统管理 系统监控 系统工具 navigation -->
+      <el-sub-menu
+        v-for="(item, index) in menu"
+        :key="index"
+        :index="index.toString()"
       >
-        <li v-for="(item, index) in item.children" :key="index" class="item">
+        <template #title>
           <i :class="['iconfont', item.icon]"></i
-          ><span>{{ item.content }}</span>
-          <i
-            v-if="item.isArraw"
-            :class="[
-              'arraw',
-              'iconfont',
-              'icon-i_arraw_down',
-              { selected: count == index ? true : false },
-              ,
-            ]"
-          ></i>
-        </li>
-      </ul>
-    </div>
+          ><span class="firstMenu">{{ item.title }}</span>
+        </template>
+        <el-menu-item-group class="menu">
+          <el-menu-item
+            v-for="(child, childIndex) in item.children"
+            :key="childIndex"
+            class="item"
+          >
+            <i :class="['iconfont', child.icon]"></i
+            ><span>{{ child.content }}</span>
+            <i
+              v-if="child.isArraw"
+              :class="[
+                'arraw',
+                'iconfont',
+                'icon-i_arraw_down',
+                { selected: count == childIndex },
+                ,
+              ]"
+            ></i
+          ></el-menu-item>
+        </el-menu-item-group>
+        <el-sub-menu index="2-4">
+          <template #title>item four</template>
+          <el-menu-item index="1-4-1">item one</el-menu-item>
+        </el-sub-menu>
+      </el-sub-menu>
 
-    <!-- 若依官网 navigation -->
-    <div class="navigation">
-      <i class="iconfont">&#xe653;</i><span>若依官网</span>
-    </div>
-  </div>
+      <el-menu-item index="3">
+        <el-icon><document /></el-icon>
+        <span>Navigator Three</span>
+      </el-menu-item>
+
+      <el-menu-item index="4">
+        <el-icon><setting /></el-icon>
+        <span>Navigator Four</span>
+      </el-menu-item>
+    </el-menu>
+  </el-row>
 </template>
 
 <style scoped>
 .typeNav {
-  position: absolute;
+  position: absolute; /* 保持绝对定位 */
   display: flex;
   flex-direction: column;
-  left: 0;
-  top: 0;
+  top: 0px;
+  left: 200px;
   width: 200px;
   height: 100%;
+  box-sizing: border-box;
   background-color: rgb(48, 65, 86);
   box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.2);
 }
+
+.el-menu-vertical-demo {
+  position: relative; /* 确保菜单项相对定位 */
+  width: 100%;
+  box-sizing: border-box;
+}
+.el-menu-vertical {
+  position: relative; /* 确保 el-menu 是相对定位 */
+}
+
+/* 子菜单项的样式，确保子菜单在父容器内展开 */
+.el-sub-menu {
+  position: relative; /* 子菜单的相对定位 */
+}
+.el-sub-menu > .el-menu {
+  position: relative; /* 子菜单的绝对定位 */
+  left: 100%; /* 将子菜单放置在父菜单的右边 */
+  top: 0; /* 让子菜单从父菜单的顶部开始展开 */
+  width: 100%; /* 可以根据需要调整子菜单的宽度 */
+  display: none; /* 默认隐藏子菜单 */
+}
+
+.el-sub-menu.is-opened > .el-menu {
+  display: block; /* 打开时显示子菜单 */
+}
+
+.el-menu-item-group {
+  position: relative;
+}
+
 .title {
   left: 0;
   width: 100%;
@@ -152,11 +212,15 @@ let menu = [
   cursor: pointer;
   background-color: #2d3d51;
 }
-.navigation i {
+.navigation span {
+  padding-left: 20px;
+}
+
+.iconfont {
   position: relative;
   font-size: 14px;
 }
-.navigation span {
+.firstMenu {
   padding-left: 16px;
 }
 .arraw {
@@ -186,7 +250,6 @@ let menu = [
   background-color: #1f2d3d;
   color: #bfcbd9;
   font-size: 14px;
-  overflow: hidden;
   transition: ease-in-out 0.4s;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
     Microsoft YaHei, Arial, sans-serif;
