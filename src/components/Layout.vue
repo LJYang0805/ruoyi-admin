@@ -1,17 +1,23 @@
 <script setup>
-import TypeNav1 from "./TypeNav1.vue";
+import { ref } from "vue";
+import TypeNav from "./TypeNav.vue";
 import Header from "./Header.vue";
+const isCollapse = ref(false);
+
+const toggleIscollapse = () => {
+  isCollapse.value = !isCollapse.value;
+};
 </script>
 
 <template>
   <el-config-provider>
     <el-container>
       <el-aside width="200px">
-        <TypeNav1 />
+        <TypeNav :isCollapse="isCollapse" />
       </el-aside>
       <el-container>
         <el-header>
-          <Header />
+          <Header @toggleIscollapse="toggleIscollapse" />
         </el-header>
         <el-main> main </el-main>
       </el-container>
