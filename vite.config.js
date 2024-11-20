@@ -9,6 +9,7 @@ export default defineConfig({
   server: {
     hmr: true
   },
+
   plugins: [
     AutoImport({
       resolvers: [ElementPlusResolver()]
@@ -17,5 +18,5 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()]
     }),
     vue()
-  ],
+  ]
 })

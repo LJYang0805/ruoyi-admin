@@ -6,10 +6,9 @@ import {
   Location,
   Setting,
 } from "@element-plus/icons-vue";
+// 引入menuitem组件
+import MenuItem from "./MenuItem.vue";
 
-// const handleOpen = (key: string, keyPath: string[]) => {
-//   console.log(key, keyPath)
-// }
 const handleOpen = (key, keyPath) => {
   console.log(key, keyPath);
 };
@@ -23,51 +22,103 @@ const props = defineProps({
 
 let menu = [
   {
+    title: "首页",
+    path: "/dashboard",
+    icon: "icon-dashboard-fill",
+  },
+  {
     title: "系统管理",
+    path: "/system",
     icon: "icon-system",
     children: [
-      { content: "用户管理", icon: `icon-user`, isArraw: false },
-      { content: "角色管理", icon: "icon-peoples", isArraw: false },
-      { content: "菜单管理", icon: "icon-tree-table", isArraw: false },
-      { content: "部门管理", icon: "icon-tree", isArraw: false },
-      { content: "岗位管理", icon: "icon-Books_notebook", isArraw: false },
-      { content: "字典管理", icon: "icon-zhuanye", isArraw: false },
-      { content: "参数设置", icon: "icon-edit1", isArraw: false },
-      { content: "通知公告", icon: "icon-chat", isArraw: false },
+      {
+        title: "用户管理",
+        path: "/system/user",
+        icon: `icon-user`,
+        isArraw: false,
+      },
+      {
+        title: "角色管理",
+        path: "/system/role",
+        icon: "icon-peoples",
+        isArraw: false,
+      },
+      {
+        title: "菜单管理",
+        path: "/system/menu",
+        icon: "icon-tree-table",
+        isArraw: false,
+      },
+      {
+        title: "日志管理",
+        path: "/system/log",
+        icon: "icon-edit2",
+        isArraw: true,
+        children: [
+          {
+            title: "操作日志",
+            path: "/system/log/operate",
+            icon: "icon-edit1",
+            isArraw: false,
+          },
+          {
+            title: "登录日志",
+            path: "/system/log/login",
+            icon: "icon-chat",
+            isArraw: false,
+          },
+        ],
+      },
     ],
   },
   {
     title: "系统监控",
+    path: "/monitor",
     icon: "icon-monitor",
     children: [
-      { content: "在线用户", icon: "icon-a-Devicebase-station-line" },
-      { content: "定时任务", icon: "icon-dict" },
-      { content: "数据监控", icon: "icon-Druid" },
-      { content: "服务监控", icon: "icon-monitor" },
-      { content: "缓存监控", icon: "icon-Redis" },
-      { content: "缓存列表", icon: "icon-redis-list" },
+      {
+        title: "在线用户",
+        path: "/monitor/online",
+        icon: "icon-a-Devicebase-station-line",
+      },
+      {
+        title: "定时任务",
+        path: "/monitor/timer-task",
+        icon: "icon-dict",
+      },
     ],
   },
   {
     title: "系统工具",
     icon: "icon-c-tool-box",
+    path: "/tools",
     children: [
-      { content: "表单构建", icon: `icon-buildings_half-build` },
-      { content: "代码生成", icon: "icon-code" },
-      { content: "系统接口", icon: "icon-swagger" },
+      {
+        title: "表单构建",
+        path: "/tools/form",
+        icon: `icon-buildings_half-build`,
+      },
+      {
+        title: "代码生成",
+        path: "/tools/codeGeneration",
+        icon: "icon-code",
+      },
+      {
+        title: "系统接口",
+        path: "/tools/interface",
+        icon: "icon-swagger",
+      },
     ],
+  },
+  {
+    title: "若依官网",
+    icon: "icon-paper-plane-1",
+    path: "/ruoyi",
   },
 ];
 
-let thirdMenu = {
-  content: "日志管理",
-  icon: "icon-edit2",
-  isArraw: true,
-  children: [
-    { content: "操作日志", icon: "icon-edit1", isArraw: false },
-    { content: "登录日志", icon: "icon-chat", isArraw: false },
-  ],
-};
+// 预备一个tags标签数组，用来存储点击后的面包屑标签
+const tags = [];
 </script>
 
 <template>
@@ -80,7 +131,9 @@ let thirdMenu = {
           :class="props.isCollapse ? 'collapseImg' : ''"
         /><span>若依管理系统</span>
       </div>
+
       <el-menu
+        :isCollapse="isCollapse"
         unique-opened
         active-text-color="#ffd04b"
         background-color="#545c64"
@@ -91,68 +144,14 @@ let thirdMenu = {
         @open="handleOpen"
         @close="handleClose"
       >
-        <!-- 首页 navigation -->
-        <el-menu-item
-          :class="['item', props.isCollapse ? 'collapseItem' : '']"
-          index="1"
+        <!--首页 系统管理 系统监控 系统工具 若依官网 navigation -->
+        <menu-item
+          v-for="item in menu"
+          :key="item.title"
+          :menu="item"
+          :index="item.path"
         >
-          <i class="iconfont icon-dashboard-fill"></i><span>首页</span>
-        </el-menu-item>
-
-        <!-- 系统管理 系统监控 系统工具 navigation -->
-        <el-sub-menu
-          v-for="(item, index) in menu"
-          :key="index"
-          :index="index.toString()"
-        >
-          <template #title>
-            <i :class="['iconfont', item.icon]"></i
-            ><span class="firstMenu">{{ item.title }}</span>
-          </template>
-          <el-menu-item
-            v-for="(child, childIndex) in item.children"
-            :key="childIndex"
-            class="item menu"
-          >
-            <i :class="['iconfont', child.icon]"></i
-            ><span>{{ child.content }}</span>
-            <i
-              v-if="child.isArraw"
-              :class="[
-                'arraw',
-                'iconfont',
-                'icon-i_arraw_down',
-                { selected: count == childIndex },
-                ,
-              ]"
-            ></i
-          ></el-menu-item>
-          <el-sub-menu>
-            <template #title>
-              <i :class="['iconfont', thirdMenu.icon]"></i
-              ><span class="firstMenu thirdMenu">{{ thirdMenu.content }}</span>
-            </template>
-            <el-menu-item-group class="menu">
-              <el-menu-item
-                v-for="(it, itIndex) in thirdMenu.children"
-                :key="itIndex"
-                class="item"
-              >
-                <i :class="['iconfont', it.icon]"></i
-                ><span>{{ it.content }}</span>
-              </el-menu-item>
-            </el-menu-item-group>
-          </el-sub-menu>
-        </el-sub-menu>
-
-        <!-- 若依官网 navigation -->
-        <el-menu-item
-          :class="['item', props.isCollapse ? 'collapseItem' : '']"
-          index="4"
-        >
-          <i class="iconfont icon-paper-plane-1"></i>
-          <span>若依官网</span>
-        </el-menu-item>
+        </menu-item>
       </el-menu>
     </div>
   </el-scrollbar>
@@ -180,6 +179,10 @@ let thirdMenu = {
   margin-left: 11px !important;
 }
 
+.icon-dashboard-fill {
+  padding-left: 20px;
+}
+
 .el-menu {
   background-color: #304156;
   border: none;
@@ -192,7 +195,7 @@ let thirdMenu = {
 }
 
 :deep(.el-sub-menu__title:hover) {
-  background-color: #2d3d51 !important;
+  background-color: #2d3d51;
 }
 
 :deep(.el-sub-menu__title) {
@@ -260,9 +263,6 @@ let thirdMenu = {
   position: relative;
   font-size: 14px;
 }
-.firstMenu {
-  padding-left: 16px;
-}
 
 .arraw {
   display: block;
@@ -328,5 +328,14 @@ let thirdMenu = {
 .item .arraw {
   right: -130px;
   top: -35px;
+}
+:deep(.is-opened > .el-menu--inline > .el-sub-menu > .el-sub-menu__title) {
+  background-color: #1f2d3d !important;
+  color: #bfcbd9 !important;
+}
+:deep(
+    .is-opened > .el-menu--inline > .el-sub-menu > .el-sub-menu__title:hover
+  ) {
+  background-color: #001528 !important;
 }
 </style>

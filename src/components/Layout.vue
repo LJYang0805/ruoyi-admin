@@ -17,9 +17,13 @@ const toggleIscollapse = () => {
       </el-aside>
       <el-container>
         <el-header>
-          <Header @toggleIscollapse="toggleIscollapse" />
+          <Header
+            @toggleIscollapse="toggleIscollapse"
+            :isCollapse="isCollapse"
+          />
+          <Tag></Tag>
         </el-header>
-        <el-main> main </el-main>
+        <el-main> <router-view /></el-main>
       </el-container>
     </el-container>
   </el-config-provider>
@@ -29,5 +33,12 @@ const toggleIscollapse = () => {
 * {
   margin: 0;
   padding: 0;
+}
+.el-aside {
+  width: auto;
+}
+.el-header {
+  height: auto;
+  width: 100%;
 }
 </style>
