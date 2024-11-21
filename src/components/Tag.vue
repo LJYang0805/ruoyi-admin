@@ -20,7 +20,7 @@ const tags = ref([
 
 <style scoped>
 .gap-2 {
-  height: 34px;
+  height: 30px;
   padding: 2px 10px;
 }
 ::v-deep .el-tag {
@@ -37,5 +37,8 @@ const tags = ref([
 
 ::v-deep .el-tag.is-closable:first-of-type .el-tag__close {
   display: none !important;
+}
+.flex {
+  box-shadow: 0px 1px 5px #b8b7b7;
 }
 </style>
