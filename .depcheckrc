@@ -1,0 +1,6 @@
+{
+  "ignores": [
+    "element-plus",
+    "@element-plus/icons-vue"
+  ]
+}

@@ -1,3 +1,12 @@
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const activeNames = ref(["1"]);
+const handleChange = (val: string[]) => {
+  console.log(val);
+};
+</script>
+
 <template>
   <div class="container">
     <p>
@@ -106,13 +115,477 @@
     </el-col>
   </el-row>
   <el-row>
-    <el-col :span="8"> 12 </el-col>
-    <el-col :span="8"> 34</el-col>
-    <el-col :span="8">56</el-col>
+    <el-col :span="8">
+      <el-card style="max-width: 100%">
+        <template #header>
+          <div class="card-header">
+            <span>联系信息</span>
+          </div>
+        </template>
+        <p class="text item">
+          <i class="iconfont icon-paper-plane-1"></i>官网：
+          <el-link href="http://www.ruoyi.vip" target="_blank"
+            >http://www.ruoyi.vip</el-link
+          >
+        </p>
+        <p class="text item">
+          <i class="iconfont icon-user"></i>QQ群：
+          <s> 满937441 </s>
+          <s> 满887144332</s>
+          <s> 满180251782 </s>
+          <s> 满104180207 </s>
+          <s> 满186866453 </s>
+          <s> 满201396349 </s>
+          <s> 满101456076 </s>
+          <s> 满101539465 </s>
+          <s> 满264312783 </s>
+          <s> 满167385320 </s>
+          <s> 满104748341 </s>
+          <s> 满160110482 </s>
+          <s> 满104748341 </s>
+          <s> 满160110482 </s>
+          <s> 满104748341 </s>
+          <s> 满160110482 </s>
+          <s> 满104748341 </s>
+          <s> 满160110482 </s>
+          <s> 满104748341 </s>
+          <s> 满160110482 </s>
+          <s> 满160110482 </s>
+          <a
+            target="_blank"
+            href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=SUc-msaypcqB2UTFif4eqGlBHkKcvMNP&authKey=JdQBouY2PG%2BS%2BCzAfIgbCGNgxyahpfh24IW%2F03rPxGilhqVbisLma%2FFFnt79DHNh&noverify=0&group_code=151450850"
+          >
+            151450850</a
+          >
+        </p>
+        <p class="text item">
+          <i class="iconfont icon-chat"></i> 微信：
+          <a href="#" target="_blank">/ *若依</a>
+        </p>
+        <p class="text item">
+          <i class="iconfont icon-wallet"></i>支付宝：
+          <a href="#" target="_blank">/ *若依</a>
+        </p>
+      </el-card>
+    </el-col>
+    <el-col :span="8">
+      <el-card style="max-width: 100%">
+        <template #header>
+          <div class="card-header">
+            <span>更新日志</span>
+          </div>
+        </template>
+        <div class="demo-collapse">
+          <el-collapse
+            v-model="activeNames"
+            @change="handleChange"
+            accordion="true"
+          >
+            <el-collapse-item title="v3.8.8 - 2024-06-30" name="1">
+              <div>
+                <ol>
+                  <li>菜单管理新增路由名称</li>
+                  <li>新增数据脱敏过滤注解</li>
+                  <li>用户密码新增非法字符验证</li>
+                  <li>限制用户操作数据权限范围</li>
+                  <li>代码生成新增创建表结构功能</li>
+                  <li>定时任务白名单配置范围缩小</li>
+                  <li>优化代码生成主子表关联查询方式</li>
+                  <li>Excel注解新增属性comboReadDict</li>
+                  <li>Excel注解ColumnType类型新增文本</li>
+                  <li>新增国际化资源文件配置</li>
+                  <li>升级oshi到最新版本6.6.1</li>
+                  <li>升级druid到最新版本1.2.23</li>
+                  <li>升级core-js到最新版本3.37.1</li>
+                  <li>更新HttpUtils中的User-Agent</li>
+                  <li>更新compressionPlugin到6.1.2以兼容node18+</li>
+                  <li>升级spring-security到安全版本，防止漏洞风险</li>
+                  <li>升级spring-framework到安全版本，防止漏洞风险</li>
+                  <li>优化自定义XSS注解匹配方式</li>
+                  <li>优化缓存监控键名列表排序显示</li>
+                  <li>优化定时任务日志默认按时间排序</li>
+                  <li>优化默认文件大小超过2G无效的问题</li>
+                  <li>优化查表特殊字符使用反斜杠进行转义</li>
+                  <li>优化定时任务cron表达式小时配置显示错误问题</li>
+                  <li>优化多个自定数据权限使用in查询,避免多次拼接</li>
+                  <li>优化导入Excel时设置dictType属性重复查缓存问题</li>
+                  <li>其他细节优化</li>
+                </ol>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="v3.8.8 - 2024-06-30" name="2">
+              <div>
+                <ol>
+                  <li>菜单管理新增路由名称</li>
+                  <li>新增数据脱敏过滤注解</li>
+                  <li>用户密码新增非法字符验证</li>
+                  <li>限制用户操作数据权限范围</li>
+                  <li>代码生成新增创建表结构功能</li>
+                  <li>定时任务白名单配置范围缩小</li>
+                  <li>优化代码生成主子表关联查询方式</li>
+                  <li>Excel注解新增属性comboReadDict</li>
+                  <li>Excel注解ColumnType类型新增文本</li>
+                  <li>新增国际化资源文件配置</li>
+                  <li>升级oshi到最新版本6.6.1</li>
+                  <li>升级druid到最新版本1.2.23</li>
+                  <li>升级core-js到最新版本3.37.1</li>
+                  <li>更新HttpUtils中的User-Agent</li>
+                  <li>更新compressionPlugin到6.1.2以兼容node18+</li>
+                  <li>升级spring-security到安全版本，防止漏洞风险</li>
+                  <li>升级spring-framework到安全版本，防止漏洞风险</li>
+                  <li>优化自定义XSS注解匹配方式</li>
+                  <li>优化缓存监控键名列表排序显示</li>
+                  <li>优化定时任务日志默认按时间排序</li>
+                  <li>优化默认文件大小超过2G无效的问题</li>
+                  <li>优化查表特殊字符使用反斜杠进行转义</li>
+                  <li>优化定时任务cron表达式小时配置显示错误问题</li>
+                  <li>优化多个自定数据权限使用in查询,避免多次拼接</li>
+                  <li>优化导入Excel时设置dictType属性重复查缓存问题</li>
+                  <li>其他细节优化</li>
+                </ol>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="v3.8.8 - 2024-06-30" name="3">
+              <div>
+                <ol>
+                  <li>菜单管理新增路由名称</li>
+                  <li>新增数据脱敏过滤注解</li>
+                  <li>用户密码新增非法字符验证</li>
+                  <li>限制用户操作数据权限范围</li>
+                  <li>代码生成新增创建表结构功能</li>
+                  <li>定时任务白名单配置范围缩小</li>
+                  <li>优化代码生成主子表关联查询方式</li>
+                  <li>Excel注解新增属性comboReadDict</li>
+                  <li>Excel注解ColumnType类型新增文本</li>
+                  <li>新增国际化资源文件配置</li>
+                  <li>升级oshi到最新版本6.6.1</li>
+                  <li>升级druid到最新版本1.2.23</li>
+                  <li>升级core-js到最新版本3.37.1</li>
+                  <li>更新HttpUtils中的User-Agent</li>
+                  <li>更新compressionPlugin到6.1.2以兼容node18+</li>
+                  <li>升级spring-security到安全版本，防止漏洞风险</li>
+                  <li>升级spring-framework到安全版本，防止漏洞风险</li>
+                  <li>优化自定义XSS注解匹配方式</li>
+                  <li>优化缓存监控键名列表排序显示</li>
+                  <li>优化定时任务日志默认按时间排序</li>
+                  <li>优化默认文件大小超过2G无效的问题</li>
+                  <li>优化查表特殊字符使用反斜杠进行转义</li>
+                  <li>优化定时任务cron表达式小时配置显示错误问题</li>
+                  <li>优化多个自定数据权限使用in查询,避免多次拼接</li>
+                  <li>优化导入Excel时设置dictType属性重复查缓存问题</li>
+                  <li>其他细节优化</li>
+                </ol>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="v3.8.8 - 2024-06-30" name="4">
+              <div>
+                <ol>
+                  <li>菜单管理新增路由名称</li>
+                  <li>新增数据脱敏过滤注解</li>
+                  <li>用户密码新增非法字符验证</li>
+                  <li>限制用户操作数据权限范围</li>
+                  <li>代码生成新增创建表结构功能</li>
+                  <li>定时任务白名单配置范围缩小</li>
+                  <li>优化代码生成主子表关联查询方式</li>
+                  <li>Excel注解新增属性comboReadDict</li>
+                  <li>Excel注解ColumnType类型新增文本</li>
+                  <li>新增国际化资源文件配置</li>
+                  <li>升级oshi到最新版本6.6.1</li>
+                  <li>升级druid到最新版本1.2.23</li>
+                  <li>升级core-js到最新版本3.37.1</li>
+                  <li>更新HttpUtils中的User-Agent</li>
+                  <li>更新compressionPlugin到6.1.2以兼容node18+</li>
+                  <li>升级spring-security到安全版本，防止漏洞风险</li>
+                  <li>升级spring-framework到安全版本，防止漏洞风险</li>
+                  <li>优化自定义XSS注解匹配方式</li>
+                  <li>优化缓存监控键名列表排序显示</li>
+                  <li>优化定时任务日志默认按时间排序</li>
+                  <li>优化默认文件大小超过2G无效的问题</li>
+                  <li>优化查表特殊字符使用反斜杠进行转义</li>
+                  <li>优化定时任务cron表达式小时配置显示错误问题</li>
+                  <li>优化多个自定数据权限使用in查询,避免多次拼接</li>
+                  <li>优化导入Excel时设置dictType属性重复查缓存问题</li>
+                  <li>其他细节优化</li>
+                </ol>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="v3.8.8 - 2024-06-30" name="5">
+              <div>
+                <ol>
+                  <li>菜单管理新增路由名称</li>
+                  <li>新增数据脱敏过滤注解</li>
+                  <li>用户密码新增非法字符验证</li>
+                  <li>限制用户操作数据权限范围</li>
+                  <li>代码生成新增创建表结构功能</li>
+                  <li>定时任务白名单配置范围缩小</li>
+                  <li>优化代码生成主子表关联查询方式</li>
+                  <li>Excel注解新增属性comboReadDict</li>
+                  <li>Excel注解ColumnType类型新增文本</li>
+                  <li>新增国际化资源文件配置</li>
+                  <li>升级oshi到最新版本6.6.1</li>
+                  <li>升级druid到最新版本1.2.23</li>
+                  <li>升级core-js到最新版本3.37.1</li>
+                  <li>更新HttpUtils中的User-Agent</li>
+                  <li>更新compressionPlugin到6.1.2以兼容node18+</li>
+                  <li>升级spring-security到安全版本，防止漏洞风险</li>
+                  <li>升级spring-framework到安全版本，防止漏洞风险</li>
+                  <li>优化自定义XSS注解匹配方式</li>
+                  <li>优化缓存监控键名列表排序显示</li>
+                  <li>优化定时任务日志默认按时间排序</li>
+                  <li>优化默认文件大小超过2G无效的问题</li>
+                  <li>优化查表特殊字符使用反斜杠进行转义</li>
+                  <li>优化定时任务cron表达式小时配置显示错误问题</li>
+                  <li>优化多个自定数据权限使用in查询,避免多次拼接</li>
+                  <li>优化导入Excel时设置dictType属性重复查缓存问题</li>
+                  <li>其他细节优化</li>
+                </ol>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="v3.8.8 - 2024-06-30" name="6">
+              <div>
+                <ol>
+                  <li>菜单管理新增路由名称</li>
+                  <li>新增数据脱敏过滤注解</li>
+                  <li>用户密码新增非法字符验证</li>
+                  <li>限制用户操作数据权限范围</li>
+                  <li>代码生成新增创建表结构功能</li>
+                  <li>定时任务白名单配置范围缩小</li>
+                  <li>优化代码生成主子表关联查询方式</li>
+                  <li>Excel注解新增属性comboReadDict</li>
+                  <li>Excel注解ColumnType类型新增文本</li>
+                  <li>新增国际化资源文件配置</li>
+                  <li>升级oshi到最新版本6.6.1</li>
+                  <li>升级druid到最新版本1.2.23</li>
+                  <li>升级core-js到最新版本3.37.1</li>
+                  <li>更新HttpUtils中的User-Agent</li>
+                  <li>更新compressionPlugin到6.1.2以兼容node18+</li>
+                  <li>升级spring-security到安全版本，防止漏洞风险</li>
+                  <li>升级spring-framework到安全版本，防止漏洞风险</li>
+                  <li>优化自定义XSS注解匹配方式</li>
+                  <li>优化缓存监控键名列表排序显示</li>
+                  <li>优化定时任务日志默认按时间排序</li>
+                  <li>优化默认文件大小超过2G无效的问题</li>
+                  <li>优化查表特殊字符使用反斜杠进行转义</li>
+                  <li>优化定时任务cron表达式小时配置显示错误问题</li>
+                  <li>优化多个自定数据权限使用in查询,避免多次拼接</li>
+                  <li>优化导入Excel时设置dictType属性重复查缓存问题</li>
+                  <li>其他细节优化</li>
+                </ol>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="v3.8.8 - 2024-06-30" name="7">
+              <div>
+                <ol>
+                  <li>菜单管理新增路由名称</li>
+                  <li>新增数据脱敏过滤注解</li>
+                  <li>用户密码新增非法字符验证</li>
+                  <li>限制用户操作数据权限范围</li>
+                  <li>代码生成新增创建表结构功能</li>
+                  <li>定时任务白名单配置范围缩小</li>
+                  <li>优化代码生成主子表关联查询方式</li>
+                  <li>Excel注解新增属性comboReadDict</li>
+                  <li>Excel注解ColumnType类型新增文本</li>
+                  <li>新增国际化资源文件配置</li>
+                  <li>升级oshi到最新版本6.6.1</li>
+                  <li>升级druid到最新版本1.2.23</li>
+                  <li>升级core-js到最新版本3.37.1</li>
+                  <li>更新HttpUtils中的User-Agent</li>
+                  <li>更新compressionPlugin到6.1.2以兼容node18+</li>
+                  <li>升级spring-security到安全版本，防止漏洞风险</li>
+                  <li>升级spring-framework到安全版本，防止漏洞风险</li>
+                  <li>优化自定义XSS注解匹配方式</li>
+                  <li>优化缓存监控键名列表排序显示</li>
+                  <li>优化定时任务日志默认按时间排序</li>
+                  <li>优化默认文件大小超过2G无效的问题</li>
+                  <li>优化查表特殊字符使用反斜杠进行转义</li>
+                  <li>优化定时任务cron表达式小时配置显示错误问题</li>
+                  <li>优化多个自定数据权限使用in查询,避免多次拼接</li>
+                  <li>优化导入Excel时设置dictType属性重复查缓存问题</li>
+                  <li>其他细节优化</li>
+                </ol>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="v3.8.8 - 2024-06-30" name="8">
+              <div>
+                <ol>
+                  <li>菜单管理新增路由名称</li>
+                  <li>新增数据脱敏过滤注解</li>
+                  <li>用户密码新增非法字符验证</li>
+                  <li>限制用户操作数据权限范围</li>
+                  <li>代码生成新增创建表结构功能</li>
+                  <li>定时任务白名单配置范围缩小</li>
+                  <li>优化代码生成主子表关联查询方式</li>
+                  <li>Excel注解新增属性comboReadDict</li>
+                  <li>Excel注解ColumnType类型新增文本</li>
+                  <li>新增国际化资源文件配置</li>
+                  <li>升级oshi到最新版本6.6.1</li>
+                  <li>升级druid到最新版本1.2.23</li>
+                  <li>升级core-js到最新版本3.37.1</li>
+                  <li>更新HttpUtils中的User-Agent</li>
+                  <li>更新compressionPlugin到6.1.2以兼容node18+</li>
+                  <li>升级spring-security到安全版本，防止漏洞风险</li>
+                  <li>升级spring-framework到安全版本，防止漏洞风险</li>
+                  <li>优化自定义XSS注解匹配方式</li>
+                  <li>优化缓存监控键名列表排序显示</li>
+                  <li>优化定时任务日志默认按时间排序</li>
+                  <li>优化默认文件大小超过2G无效的问题</li>
+                  <li>优化查表特殊字符使用反斜杠进行转义</li>
+                  <li>优化定时任务cron表达式小时配置显示错误问题</li>
+                  <li>优化多个自定数据权限使用in查询,避免多次拼接</li>
+                  <li>优化导入Excel时设置dictType属性重复查缓存问题</li>
+                  <li>其他细节优化</li>
+                </ol>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="v3.8.8 - 2024-06-30" name="9">
+              <div>
+                <ol>
+                  <li>菜单管理新增路由名称</li>
+                  <li>新增数据脱敏过滤注解</li>
+                  <li>用户密码新增非法字符验证</li>
+                  <li>限制用户操作数据权限范围</li>
+                  <li>代码生成新增创建表结构功能</li>
+                  <li>定时任务白名单配置范围缩小</li>
+                  <li>优化代码生成主子表关联查询方式</li>
+                  <li>Excel注解新增属性comboReadDict</li>
+                  <li>Excel注解ColumnType类型新增文本</li>
+                  <li>新增国际化资源文件配置</li>
+                  <li>升级oshi到最新版本6.6.1</li>
+                  <li>升级druid到最新版本1.2.23</li>
+                  <li>升级core-js到最新版本3.37.1</li>
+                  <li>更新HttpUtils中的User-Agent</li>
+                  <li>更新compressionPlugin到6.1.2以兼容node18+</li>
+                  <li>升级spring-security到安全版本，防止漏洞风险</li>
+                  <li>升级spring-framework到安全版本，防止漏洞风险</li>
+                  <li>优化自定义XSS注解匹配方式</li>
+                  <li>优化缓存监控键名列表排序显示</li>
+                  <li>优化定时任务日志默认按时间排序</li>
+                  <li>优化默认文件大小超过2G无效的问题</li>
+                  <li>优化查表特殊字符使用反斜杠进行转义</li>
+                  <li>优化定时任务cron表达式小时配置显示错误问题</li>
+                  <li>优化多个自定数据权限使用in查询,避免多次拼接</li>
+                  <li>优化导入Excel时设置dictType属性重复查缓存问题</li>
+                  <li>其他细节优化</li>
+                </ol>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="v3.8.8 - 2024-06-30" name="10">
+              <div>
+                <ol>
+                  <li>菜单管理新增路由名称</li>
+                  <li>新增数据脱敏过滤注解</li>
+                  <li>用户密码新增非法字符验证</li>
+                  <li>限制用户操作数据权限范围</li>
+                  <li>代码生成新增创建表结构功能</li>
+                  <li>定时任务白名单配置范围缩小</li>
+                  <li>优化代码生成主子表关联查询方式</li>
+                  <li>Excel注解新增属性comboReadDict</li>
+                  <li>Excel注解ColumnType类型新增文本</li>
+                  <li>新增国际化资源文件配置</li>
+                  <li>升级oshi到最新版本6.6.1</li>
+                  <li>升级druid到最新版本1.2.23</li>
+                  <li>升级core-js到最新版本3.37.1</li>
+                  <li>更新HttpUtils中的User-Agent</li>
+                  <li>更新compressionPlugin到6.1.2以兼容node18+</li>
+                  <li>升级spring-security到安全版本，防止漏洞风险</li>
+                  <li>升级spring-framework到安全版本，防止漏洞风险</li>
+                  <li>优化自定义XSS注解匹配方式</li>
+                  <li>优化缓存监控键名列表排序显示</li>
+                  <li>优化定时任务日志默认按时间排序</li>
+                  <li>优化默认文件大小超过2G无效的问题</li>
+                  <li>优化查表特殊字符使用反斜杠进行转义</li>
+                  <li>优化定时任务cron表达式小时配置显示错误问题</li>
+                  <li>优化多个自定数据权限使用in查询,避免多次拼接</li>
+                  <li>优化导入Excel时设置dictType属性重复查缓存问题</li>
+                  <li>其他细节优化</li>
+                </ol>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="v3.8.8 - 2024-06-30" name="11">
+              <div>
+                <ol>
+                  <li>菜单管理新增路由名称</li>
+                  <li>新增数据脱敏过滤注解</li>
+                  <li>用户密码新增非法字符验证</li>
+                  <li>限制用户操作数据权限范围</li>
+                  <li>代码生成新增创建表结构功能</li>
+                  <li>定时任务白名单配置范围缩小</li>
+                  <li>优化代码生成主子表关联查询方式</li>
+                  <li>Excel注解新增属性comboReadDict</li>
+                  <li>Excel注解ColumnType类型新增文本</li>
+                  <li>新增国际化资源文件配置</li>
+                  <li>升级oshi到最新版本6.6.1</li>
+                  <li>升级druid到最新版本1.2.23</li>
+                  <li>升级core-js到最新版本3.37.1</li>
+                  <li>更新HttpUtils中的User-Agent</li>
+                  <li>更新compressionPlugin到6.1.2以兼容node18+</li>
+                  <li>升级spring-security到安全版本，防止漏洞风险</li>
+                  <li>升级spring-framework到安全版本，防止漏洞风险</li>
+                  <li>优化自定义XSS注解匹配方式</li>
+                  <li>优化缓存监控键名列表排序显示</li>
+                  <li>优化定时任务日志默认按时间排序</li>
+                  <li>优化默认文件大小超过2G无效的问题</li>
+                  <li>优化查表特殊字符使用反斜杠进行转义</li>
+                  <li>优化定时任务cron表达式小时配置显示错误问题</li>
+                  <li>优化多个自定数据权限使用in查询,避免多次拼接</li>
+                  <li>优化导入Excel时设置dictType属性重复查缓存问题</li>
+                  <li>其他细节优化</li>
+                </ol>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="v3.8.8 - 2024-06-30" name="12">
+              <div>
+                <ol>
+                  <li>菜单管理新增路由名称</li>
+                  <li>新增数据脱敏过滤注解</li>
+                  <li>用户密码新增非法字符验证</li>
+                  <li>限制用户操作数据权限范围</li>
+                  <li>代码生成新增创建表结构功能</li>
+                  <li>定时任务白名单配置范围缩小</li>
+                  <li>优化代码生成主子表关联查询方式</li>
+                  <li>Excel注解新增属性comboReadDict</li>
+                  <li>Excel注解ColumnType类型新增文本</li>
+                  <li>新增国际化资源文件配置</li>
+                  <li>升级oshi到最新版本6.6.1</li>
+                  <li>升级druid到最新版本1.2.23</li>
+                  <li>升级core-js到最新版本3.37.1</li>
+                  <li>更新HttpUtils中的User-Agent</li>
+                  <li>更新compressionPlugin到6.1.2以兼容node18+</li>
+                  <li>升级spring-security到安全版本，防止漏洞风险</li>
+                  <li>升级spring-framework到安全版本，防止漏洞风险</li>
+                  <li>优化自定义XSS注解匹配方式</li>
+                  <li>优化缓存监控键名列表排序显示</li>
+                  <li>优化定时任务日志默认按时间排序</li>
+                  <li>优化默认文件大小超过2G无效的问题</li>
+                  <li>优化查表特殊字符使用反斜杠进行转义</li>
+                  <li>优化定时任务cron表达式小时配置显示错误问题</li>
+                  <li>优化多个自定数据权限使用in查询,避免多次拼接</li>
+                  <li>优化导入Excel时设置dictType属性重复查缓存问题</li>
+                  <li>其他细节优化</li>
+                </ol>
+              </div>
+            </el-collapse-item>
+          </el-collapse>
+        </div>
+      </el-card></el-col
+    >
+    <el-col :span="8">
+      <el-card style="max-width: 100%">
+        <template #header>
+          <div class="card-header">
+            <span>捐赠支持</span>
+          </div>
+        </template>
+        <img
+          src="https://vue.ruoyi.vip/static/img/pay.b5dece6f.png"
+          alt=""
+          style="width: 100%"
+        />
+        <p>你可以请作者喝咖啡表示鼓励</p></el-card
+      ></el-col
+    >
   </el-row>
 </template>
-
-<script setup></script>
 
 <style>
 .container {
@@ -179,6 +652,32 @@ li {
 }
 
 .el-row:last-child {
-  margin: 14px 0 0 26px;
+  margin: 14px 0 0 10px;
+}
+.el-main > .el-row:nth-child(3) {
+  padding: 24px 0 0 0;
+}
+.el-main > .el-row:nth-child(3) > .el-col {
+  padding: 0 10px;
+  font: 13px open sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.el-main > .el-row:nth-child(3) > .el-col:nth-child(2) {
+  margin-bottom: 20px !important ;
+}
+.el-card__header {
+  padding: 14px 15px 7px;
+}
+
+p > a {
+  text-decoration: none;
+  color: #000;
+}
+.el-card__body > p {
+  margin: 10px 0 13px !important;
+}
+
+:deep.container ol {
+  list-style-type: decimal !important;
 }
 </style>
