@@ -188,7 +188,6 @@ const handleStatusChange = (row) => {
       ElMessage.success(text + "成功");
     } else if (response.code == 500) {
       ElMessage.error("演示模式，不允许操作");
-      console.error(response.msg);
       //用户状态修改失败的结果
       row.status = row.status == "0" ? "0" : "1";
     }
@@ -273,6 +272,7 @@ const handleCommand = (command, row) => {
 };
 //重置密码按钮操作
 const handleResetPwd = (row) => {
+  console.log(row);
   ElMessageBox.prompt(`请输入"${row.userName}"的新密码`, "提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
@@ -294,6 +294,8 @@ const handleResetPwd = (row) => {
     })
     .catch(() => {});
 };
+//进入角色配置页面
+const handleAuthRole = () => {};
 //重置表单函数
 const reset = () => {
   form.value = {

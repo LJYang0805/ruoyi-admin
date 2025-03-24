@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useStore } from '../store'
-const routes = [
+//公共路由
+export const constantRoutes = [
     {
     path: '/',
     name: 'Login',
@@ -29,10 +30,14 @@ const routes = [
     ]
   }
 ]
-
+//动态路由
+export const dynamicRoutes = [
+  {},
+  {}
+]
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes:constantRoutes,
    //滚动行为，控制页面跳转时的位置，y是页面刚跳转至detail组件时，滚动条的位置
   scrollBehavior (to, from, savedPosition) {
     return {y:0}
