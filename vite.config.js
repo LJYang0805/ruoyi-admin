@@ -21,7 +21,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['splitpanes'],// 预构建依赖
+    include: ['splitpanes','vue'],// 预构建依赖
   },
   plugins: [
     AutoImport({

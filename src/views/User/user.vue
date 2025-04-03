@@ -3,8 +3,8 @@ import { ref, onMounted, reactive, watch, nextTick } from "vue";
 import { Splitpanes, Pane } from "splitpanes";
 import { getConfigKey } from "../../api/system/config";
 import { getToken } from "../../utils.js/token";
-import { useStore } from "../../store";
-import {} from "vue";
+import { userStore } from "../../store/user";
+import { useRouter } from "vue-router";
 import {
   changeUserStatus,
   listUser,
@@ -16,11 +16,12 @@ import { addDateRange, parseTime } from "../../utils.js/ruoyi";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { debounce } from "lodash";
 import { download } from "../../utils.js/requests";
+const router = useRouter();
 const deptName = ref(undefined); //部门名称
 const treeSelect = ref(null); //引用树组件实例
 const myForm = ref(null); //引用表单组件实例
 const myUpload = ref(null); //引用上传文件表单组件实例
-const store = useStore();
+const store = userStore();
 const departOptions = ref([]); //初始化值为null,表示数据正在加载
 const loading = ref(true); //遮罩层
 // 用户导入参数
@@ -295,7 +296,11 @@ const handleResetPwd = (row) => {
     .catch(() => {});
 };
 //进入角色配置页面
-const handleAuthRole = () => {};
+const handleAuthRole = (row) => {
+  const userId = row.userId;
+  console.log(typeof userId);
+  router.push({ path: `/main/system/user-auth/${userId}` });
+};
 //重置表单函数
 const reset = () => {
   form.value = {

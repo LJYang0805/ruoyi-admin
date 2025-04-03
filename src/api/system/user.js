@@ -54,3 +54,22 @@ export const resetUserPwd = (userId,password) => {
     data:data
   })
 }
+
+//查询授权角色
+export const getAuthRole = (userId) => {
+  userId = Number(userId)
+  console.log(typeof userId);
+  return requests({
+    url: `system/user/authRole/${userId}`,
+    method:'GET',
+  })
+}
+
+//保存授权角色
+export const updateAuthRole = (data) =>{
+  return requests({
+    url: '',
+    method: 'PUT',
+    params:data
+  })
+}

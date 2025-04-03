@@ -9,7 +9,7 @@ import {
   reactive,
   onBeforeMount,
 } from "vue";
-import { useStore } from "../../store";
+import { userStore } from "../../store/user";
 import { useRouter } from "vue-router";
 const onBack = () => {
   notify("Back");
@@ -21,8 +21,8 @@ const props = defineProps({
   menu: Object,
 });
 
-//实例化useStore
-const store = useStore();
+//实例化userStore
+const store = userStore();
 
 //实例化useRouter
 const router = useRouter();
@@ -62,8 +62,10 @@ let logout = function () {
     type: "warning",
   })
     .then(() => {
-      store.logout();
-      router.push("/login");
+      store.logout().then(() => {
+        router.push("/login");
+        window.location.reload();
+      });
     })
     .catch(() => {});
 };

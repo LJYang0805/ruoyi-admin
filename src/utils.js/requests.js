@@ -3,11 +3,15 @@
 import axios from 'axios'
 import nProgress from 'nprogress'//引入进度条样式
 import 'nprogress/nprogress.css'//start进度条开始，done进度条结束
-import { ElMessage,ElLoading } from 'element-plus'//引用element-UI的弹窗
+import { ElMessage,ElLoading, ElMessageBox } from 'element-plus'//引用element-UI的弹窗
 import { useRouter } from 'vue-router'
-import {transParams,blobValidate} from '../utils.js/ruoyi'
+import { transParams, blobValidate } from '../utils.js/ruoyi'
+import { userStore } from '../store/user'
 
+//准备一个加载状态的容器
 let downloadLoadingInstance
+//是否显示重新登录
+export const isReLogin = {show:false}
 // 1.利用axios对象的方法create，去创建一个axios实例
 // 2.request就是axios，只不过稍微配置一下
 const requests = axios.create({
@@ -40,10 +44,22 @@ requests.interceptors.response.use(
     //检查业务状态码
     if (response.data.code === 401) {
    //如果业务状态码是401，表示token已过期，注销登录
-    ElMessage.error('用户信息已过期，请重新登录')//提示用户
-      sessionStorage.removeItem('TOKEN')//删除token
-      const router = useRouter()
-      router.push('/login')//跳转到登录页
+      if (!isReLogin.show) {
+        const store = userStore()
+        isReLogin.show = true
+        //提示用户
+        ElMessageBox.confirm('登录状态已过期，您可以继续留在该页面，或者重新登录', '系统提示', { confirmButtonText: '重新登录', cancelButtonText: '取消', type: 'warning' }).then(() => {
+        isReLogin.show = true
+          store.logout().then(() => {
+            const router = useRouter()
+             window.location.reload()
+            router.push('/login')//跳转到登录页
+          ;})
+        }).catch(() => {
+       isReLogin.show = false
+     })
+     
+   }
     } 
      return new Promise((resolve, reject) => {
     try {

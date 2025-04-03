@@ -3,7 +3,7 @@ import { ref, onMounted, reactive, watch, nextTick } from "vue";
 import { Search } from "@element-plus/icons-vue";
 import { getConfigKey } from "../../api/system/config";
 import { getToken } from "../../utils.js/token";
-import { useStore } from "../../store";
+import { userStore } from "../../store/user";
 import {} from "vue";
 import { changeUserStatus, listUser, getUser } from "../../api/system/user";
 import { addDateRange } from "../../utils.js/ruoyi";
@@ -14,7 +14,7 @@ const deptName = ref(undefined); //部门名称
 const treeSelect = ref(null); //引用树组件实例
 const myForm = ref(null); //引用表单组件实例
 const myUpload = ref(null); //引用上传文件表单组件实例
-const store = useStore();
+const store = userStore();
 const departOptions = ref([]); //初始化值为null,表示数据正在加载
 const loading = ref(true); //遮罩层
 // 用户导入参数

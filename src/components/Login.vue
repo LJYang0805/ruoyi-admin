@@ -76,7 +76,7 @@
 
 <script setup>
 import { reactive, ref, onMounted } from "vue";
-import { useStore } from "../store"; //引入useStore
+import { userStore } from "../store/user"; //引入userStore
 import Cookies from "js-cookie";
 import CryptoJS from "crypto-js"; // 引入 crypto-js 库(用于对密码进行加密，能让密码不以文本的形式显现于后台)
 import { useRouter } from "vue-router";
@@ -105,7 +105,7 @@ const ruleForm = reactive({
 
 let loading = ref(false);
 
-const store = useStore(); //创建useStore实例
+const store = userStore(); //创建userStore实例
 onMounted(async () => {
   // login组件一挂载，就发送图片验证码请求
   store.getCode();
